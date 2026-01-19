@@ -8,8 +8,11 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/cucumber_askomdch/features",
         glue = {"cucumber_askomdch.stepdefinitions", "cucumber_askomdch.hooks"},
-        plugin = {"pretty", "html:target/cucumber-reports.html"},
-        tags = "@registration",
+        plugin = {"pretty",
+                "html:target/cucumber-reports.html",
+                "json:target/cucumber-reports/cucumber.json"
+        },
+        tags = "@login",
         monochrome = true
 )
 public class TestRunner {
