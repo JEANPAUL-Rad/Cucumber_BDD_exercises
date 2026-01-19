@@ -3,7 +3,7 @@
   Feature: User Registration
   As a new user
   I want to create account
-  So that i can purchase on websit
+  So that i can purchase on website
 
   Scenario: User registers successfully with valid details
     Given I am on the home page

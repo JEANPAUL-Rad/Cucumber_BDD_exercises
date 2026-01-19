@@ -1,13 +1,13 @@
-
-
 package cucumber_askomdch.stepdefinitions;
 
+import cucumber_askomdch.factory.DriverFactory;
 import cucumber_askomdch.pages.StorePage;
 import io.cucumber.java.en.*;
 import org.junit.Assert;
 
 public class FilterSteps {
-    StorePage storePage = new StorePage();
+
+    private final StorePage storePage = new StorePage();
 
     @When("I set minimum price to {string}")
     public void iSetMinimumPriceTo(String minPrice) {
@@ -24,43 +24,33 @@ public class FilterSteps {
         storePage.clickFilterButton();
     }
 
-    @Then("all displayed products should be within price range {string} to {string}")
-    public void allDisplayedProductsShouldBeWithinPriceRange(String minPrice, String maxPrice) {
-        double min = Double.parseDouble(minPrice);
-        double max = Double.parseDouble(maxPrice);
+    @Then("URL should contain {string}")
+    public void urlShouldContain(String expectedText) {
+        String actualUrl = DriverFactory.getDriver().getCurrentUrl();
 
-        boolean allInRange = storePage.areAllPricesInRange(min, max);
         Assert.assertTrue(
-                "Not all products are within price range " + minPrice + " to " + maxPrice,
-                allInRange
-        );
-    }
-
-    @Then("all displayed products should have price greater than or equal to {string}")
-    public void allDisplayedProductsShouldHavePriceGreaterThanOrEqualTo(String minPrice) {
-        double min = Double.parseDouble(minPrice);
-
-        boolean allAboveMin = storePage.areAllPricesAboveMin(min);
-        Assert.assertTrue(
-                "Not all products have price >= " + minPrice,
-                allAboveMin
+                "URL should contain '" + expectedText + "'. Actual URL: " + actualUrl,
+                actualUrl.contains(expectedText)
         );
     }
 
     @Then("I should see at least {int} product")
     public void iShouldSeeAtLeastProduct(int expectedCount) {
-        int actualCount = storePage.getProductCount();
+        int actual = storePage.getProductCount();
         Assert.assertTrue(
-                "Expected at least " + expectedCount + " product(s), but found " + actualCount,
-                actualCount >= expectedCount
+                "Expected at least " + expectedCount + " products, found " + actual,
+                actual >= expectedCount
         );
     }
 
-    @Then("URL should contain {string}")
-    public void urlShouldContain(String expectedText) {
+    @Then("all displayed products should be within price range {string} to {string}")
+    public void allDisplayedProductsShouldBeWithinPriceRange(String min, String max) {
+        double minVal = Double.parseDouble(min);
+        double maxVal = Double.parseDouble(max);
+        boolean inRange = storePage.areAllPricesInRange(minVal, maxVal);
         Assert.assertTrue(
-                "URL should contain '" + expectedText + "'",
-                storePage.urlContains(expectedText)
+                "Price filter didn't work (site limitation) - not all products in " + min + " to " + max,
+                inRange
         );
     }
 }
