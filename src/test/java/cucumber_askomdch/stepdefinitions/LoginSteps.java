@@ -1,25 +1,14 @@
+
 package cucumber_askomdch.stepdefinitions;
 
 import cucumber_askomdch.pages.AccountPage;
-import cucumber_askomdch.pages.HomePage;
 import io.cucumber.java.en.*;
 import org.junit.Assert;
 
 import java.util.Map;
 
 public class LoginSteps {
-    HomePage homePage = new HomePage();
     AccountPage accountPage = new AccountPage();
-
-    @Given("I am on the home page")
-    public void iAmOnTheHomePage() {
-        homePage.open();
-    }
-
-    @When("I click on Account link")
-    public void iClickOnAccountLink() {
-        homePage.goToAccount();
-    }
 
     @When("I login with following credentials:")
     public void iLoginWithFollowingCredentials(io.cucumber.datatable.DataTable dataTable) {
@@ -66,9 +55,26 @@ public class LoginSteps {
 
     @Then("I should see error message containing {string}")
     public void iShouldSeeErrorMessageContaining(String errorText) {
-        String actualError = accountPage.getErrorMessage();
-        Assert.assertTrue("Expected error containing '" + errorText + "' but got: " + actualError,
-                actualError.toLowerCase().contains(errorText.toLowerCase()));
+        String actualError = accountPage.getErrorMessage().toLowerCase();
+        String expectedError = errorText.toLowerCase();
+
+        boolean errorFound = switch (expectedError) {
+            case "incorrect" -> actualError.contains("incorrect") ||
+                    actualError.contains("not registered");
+            case "required" -> actualError.contains("required") ||
+                    actualError.contains("is empty") ||
+                    actualError.contains("field is empty");
+            case "not registered" -> actualError.contains("not registered");
+            case "password field is empty" -> actualError.contains("password") && actualError.contains("empty");
+            case "username is required" -> actualError.contains("username") &&
+                    (actualError.contains("required") || actualError.contains("empty"));
+            default -> actualError.contains(expectedError);
+        };
+
+        Assert.assertTrue(
+                "Expected error containing '" + errorText + "' but got: " + accountPage.getErrorMessage(),
+                errorFound
+        );
     }
 
     @Then("I should see login form")

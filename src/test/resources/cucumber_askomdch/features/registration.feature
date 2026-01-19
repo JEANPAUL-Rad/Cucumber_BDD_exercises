@@ -10,7 +10,7 @@
     When I click on Account link
     And I register with following details:
       | username   | email                  | password   |
-      | dybara6 | dybara6@gmail.com | Test@12345 |
+      | dybara7 | dybara7@gmail.com | Test@12345 |
     Then I should see account dashboard
     And I should not see any error message
 

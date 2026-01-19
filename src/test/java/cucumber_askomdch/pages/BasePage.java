@@ -2,6 +2,7 @@ package cucumber_askomdch.pages;
 
 import cucumber_askomdch.factory.DriverFactory;
 import cucumber_askomdch.utils.ConfigReader;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -49,5 +50,10 @@ public class BasePage {
 
     protected void waitForUrlToBe(String url) {
         wait.until(ExpectedConditions.urlToBe(url));
+    }
+    protected void waitForPageLoad() {
+        wait.until(driver ->
+                ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete")
+        );
     }
 }
