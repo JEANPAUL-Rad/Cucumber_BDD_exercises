@@ -33,10 +33,7 @@ public class StorePage extends BasePage {
     @FindBy(css = ".woocommerce-result-count")
     private WebElement resultCount;
 
-    public void navigateToStore() {
-        driver.get("https://askomdch.com/store/");
-        waitForPageLoad();
-    }
+
 
     public void setMinPrice(String minPrice) {
         setHiddenInputValue(minPriceInput, minPrice);
