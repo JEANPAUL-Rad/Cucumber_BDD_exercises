@@ -5,7 +5,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class AccountPage extends BasePage {
 
-    // Registration Elements
+
     @FindBy(id = "reg_username")
     private WebElement regUsername;
 
@@ -18,30 +18,30 @@ public class AccountPage extends BasePage {
     @FindBy(name = "register")
     private WebElement registerButton;
 
-    // Success/Error Elements
+
     @FindBy(css = ".woocommerce-MyAccount-navigation")
     private WebElement accountDashboard;
 
     @FindBy(css = ".woocommerce-error")
     private WebElement errorMessage;
 
-    // Registration Methods (All use explicit waits from BasePage)
+
     public void register(String username, String email, String password) {
-        type(regUsername, username);      // Explicit wait inside
-        type(regEmail, email);            // Explicit wait inside
-        type(regPassword, password);      // Explicit wait inside
-        click(registerButton);            // Explicit wait inside
+        type(regUsername, username);
+        type(regEmail, email);
+        type(regPassword, password);
+        click(registerButton);
     }
 
     public boolean isDashboardVisible() {
-        return isDisplayed(accountDashboard); // Explicit wait inside
+        return isDisplayed(accountDashboard);
     }
 
     public String getErrorMessage() {
-        return getText(errorMessage);         // Explicit wait inside
+        return getText(errorMessage);
     }
 
     public boolean isErrorVisible() {
-        return isDisplayed(errorMessage);     // Explicit wait inside
+        return isDisplayed(errorMessage);
     }
 }

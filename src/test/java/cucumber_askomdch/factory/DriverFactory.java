@@ -29,7 +29,7 @@ public class DriverFactory {
             }
 
             driver.get().manage().window().maximize();
-            // NO implicit wait here - using explicit waits only
+
         }
         return driver.get();
     }
