@@ -20,7 +20,7 @@
     When I login with following credentials:
       | username      | password   |
       | invaliduser   | Test@12345 |
-    Then I should see error message containing "incorrect"
+    Then I should see error message containing "not registered"
 
   Scenario: Login with invalid password
     When I login with following credentials:
@@ -38,7 +38,7 @@
     When I login with following credentials:
       | username   | password |
       | dybara6    |          |
-    Then I should see error message containing "required"
+    Then I should see error message containing "password field is empty"
 
   Scenario Outline: Login with multiple invalid credentials
     When I login with username "<username>" and password "<password>"
@@ -46,9 +46,10 @@
 
     Examples:
       | username    | password    | error_text |
-      | wronguser   | Test@12345  | incorrect  |
+      | wronguser   | Test@12345  | not registered  |
       | dybara6     | wrongpass   | incorrect  |
-      |             |             | required   |
+      |             |             | username is required   |
+      | testuser99 |            | password field is empty |
 
   Scenario: User logout successfully
     When I login with following credentials:

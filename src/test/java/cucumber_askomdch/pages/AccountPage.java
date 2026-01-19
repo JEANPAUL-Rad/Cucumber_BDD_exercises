@@ -5,7 +5,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class AccountPage extends BasePage {
 
-    // Registration Elements
+
     @FindBy(id = "reg_username")
     private WebElement regUsername;
 
@@ -18,7 +18,7 @@ public class AccountPage extends BasePage {
     @FindBy(name = "register")
     private WebElement registerButton;
 
-    // Login Elements
+
     @FindBy(id = "username")
     private WebElement loginUsername;
 
@@ -28,25 +28,25 @@ public class AccountPage extends BasePage {
     @FindBy(name = "login")
     private WebElement loginButton;
 
-    // Dashboard & Logout
+
     @FindBy(css = ".woocommerce-MyAccount-navigation")
     private WebElement accountDashboard;
 
     @FindBy(linkText = "Logout")
     private WebElement logoutLink;
 
-    // Error Messages
+
     @FindBy(css = ".woocommerce-error")
     private WebElement errorMessage;
 
     @FindBy(css = ".woocommerce-error li")
     private WebElement errorMessageItem;
 
-    // Login Form Check
+
     @FindBy(css = "form.woocommerce-form-login")
     private WebElement loginForm;
 
-    // --- Registration Methods ---
+
     public void register(String username, String email, String password) {
         type(regUsername, username);
         type(regEmail, email);
@@ -54,7 +54,7 @@ public class AccountPage extends BasePage {
         click(registerButton);
     }
 
-    // --- Login Methods ---
+
     public void login(String username, String password) {
         type(loginUsername, username);
         type(loginPassword, password);
@@ -77,7 +77,7 @@ public class AccountPage extends BasePage {
         click(logoutLink);
     }
 
-    // --- Verification Methods ---
+
     public boolean isDashboardVisible() {
         return isDisplayed(accountDashboard);
     }
