@@ -47,6 +47,7 @@ public class CartPage extends BasePage {
         return cartItems.size();
     }
 
+
     public String getFirstItemName() {
         return getText(firstItemName);
     }
