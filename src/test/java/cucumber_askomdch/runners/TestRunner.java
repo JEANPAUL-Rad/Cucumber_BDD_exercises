@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
                 "html:target/cucumber-reports.html",
                 "json:target/cucumber-reports/cucumber.json"
         },
-        tags = "@filter",
+        tags = "@cart",
         monochrome = true
 )
 public class TestRunner {

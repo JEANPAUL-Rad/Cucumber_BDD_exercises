@@ -15,6 +15,10 @@ public class HomePage extends BasePage {
     @FindBy(css = "a[href*='store']")
     private WebElement storeMenu;
 
+    @FindBy(linkText = "Cart")
+    private WebElement cartLink;
+
+
     public void open() {
         driver.get(ConfigReader.get("baseUrl"));
     }
@@ -24,5 +28,8 @@ public class HomePage extends BasePage {
     }
     public void goToStore() {
         click(storeLink);
+    }
+    public void goToCart() {
+        click(cartLink);
     }
 }

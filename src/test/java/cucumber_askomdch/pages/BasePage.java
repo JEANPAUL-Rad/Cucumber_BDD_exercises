@@ -56,4 +56,12 @@ public class BasePage {
                 ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete")
         );
     }
+
+    public WebDriver getDriver() {
+        return driver;
+    }
+
+    public WebDriverWait getWait() {
+        return wait;
+    }
 }
