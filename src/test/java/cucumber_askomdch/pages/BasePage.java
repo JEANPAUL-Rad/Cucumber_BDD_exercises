@@ -48,9 +48,6 @@ public class BasePage {
         wait.until(ExpectedConditions.urlContains(urlPart));
     }
 
-    protected void waitForUrlToBe(String url) {
-        wait.until(ExpectedConditions.urlToBe(url));
-    }
     protected void waitForPageLoad() {
         wait.until(driver ->
                 ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete")

@@ -44,7 +44,7 @@ public class StorePage extends BasePage {
     }
 
     private void setHiddenInputValue(WebElement element, String value) {
-        By locator = By.id(element.getAttribute("id"));  // or By.name if using name
+        By locator = By.id(element.getAttribute("id"));
 
 
         wait.until(ExpectedConditions.presenceOfElementLocated(locator));
