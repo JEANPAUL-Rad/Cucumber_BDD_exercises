@@ -9,6 +9,8 @@ jobs:
   nightly_build:
    runs-on: ubuntu-latest
    steps:
+     - name: Checkout
+       run: actions/checkout@v4
      - name: run Unit Tests
        run: mvn test
 
