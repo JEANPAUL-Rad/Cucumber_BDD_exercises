@@ -1,23 +1,26 @@
-name: nightly buildd at 12pm
+name: nightly build at 12pm
 
-on: 
- push: 
- schedule:
-   - cron: '59 16 * * *'
+on:
+  push:
+  schedule:
+    - cron: '59 17 * * *'
 
 jobs:
   nightly_build:
-   runs-on: ubuntu-latest
-   steps:
-     - name: Checkout
-       run: actions/checkout@v4
-     - name: run Unit Tests
-       run: mvn test
+    runs-on: ubuntu-latest
 
-     - name: Build with Maven
-       run: mvn -DskipTests -B package --no-transfer-progress --file ./pom.xml
-     - uses: actions/upload-artifact@master
-       with:
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run Unit Tests
+        run: mvn test
+
+      - name: Build with Maven
+        run: mvn -DskipTests -B package --no-transfer-progress --file pom.xml
+
+      - name: Upload WAR file
+        uses: actions/upload-artifact@v4
+        with:
           name: digibank.war
-          path: ./target/*digitalbank*.war
-       
+          path: target/*.war
