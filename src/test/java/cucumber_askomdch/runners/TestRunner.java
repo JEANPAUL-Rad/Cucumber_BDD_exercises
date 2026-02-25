@@ -10,9 +10,11 @@ import org.junit.runner.RunWith;
         glue = {"cucumber_askomdch.stepdefinitions", "cucumber_askomdch.hooks"},
         plugin = {"pretty",
                 "html:target/cucumber-reports.html",
-                "json:target/cucumber-reports/cucumber.json"
+                "json:target/cucumber-reports/cucumber.json",
+                "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
+                "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
         },
-        tags = "@cart",
+        tags = "@login",
         monochrome = true
 )
 public class TestRunner {
